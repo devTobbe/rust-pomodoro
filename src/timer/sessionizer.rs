@@ -1,43 +1,42 @@
-enum session_state {
-    focus,
-    break_
+#[derive(Debug, Eq, PartialEq)]
+enum SessionState {
+    Focus,
+    Break, 
 }
 
 #[derive(Debug)]
 struct Session {
     rounds: u32,
-    state : session_state,
+    state : SessionState,
 }
 
 impl Session {
     pub fn new(rounds : u32) -> Self {
         Self {
             rounds,
-            session_state.focus,
+            state: SessionState::Focus,
         }
     }
 
-    pub fn advance(&self) -> bool {
-        Self.rounds -= 1;
+    pub fn advance(&mut self) -> bool {
+        self.rounds -= 1;
 
-        if Self.rounds <= 0 {
+        if self.rounds <= 0 {
             return false
         }
-        flip_state();
+        self.flip_state();
         
         return true
     }
     
-    fn flip_state(&self){
-        if Self.state == session_state.focus {
-                Self.state = session_state.break_;
+    fn flip_state(&mut self){
+        if self.state == SessionState::Focus {
+                self.state = SessionState::Break;
                 return
         }
         else {
-            Self.state = session_state.focus;
+            self.state = SessionState::Focus;
             return
         }
-
-        return
     }
 }
