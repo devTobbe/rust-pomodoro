@@ -1,17 +1,17 @@
 #[derive(Debug, Eq, PartialEq)]
-enum SessionState {
+pub enum SessionState {
     Focus,
     Break, 
 }
 
 #[derive(Debug)]
-struct Session {
-    rounds: u32,
-    state : SessionState,
+pub struct Session {
+    pub rounds: u64,
+    pub state : SessionState,
 }
 
 impl Session {
-    pub fn new(rounds : u32) -> Self {
+    pub fn new(rounds : u64) -> Self {
         Self {
             rounds,
             state: SessionState::Focus,
@@ -29,7 +29,7 @@ impl Session {
         return true
     }
     
-    fn flip_state(&mut self){
+    pub fn flip_state(&mut self){
         if self.state == SessionState::Focus {
                 self.state = SessionState::Break;
                 return
@@ -39,4 +39,5 @@ impl Session {
             return
         }
     }
+
 }

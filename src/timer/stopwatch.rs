@@ -4,8 +4,8 @@ use std::{
 };
 
 #[derive(Debug)]
-struct Stopwatch {
-    time: u64,
+pub struct Stopwatch {
+    pub time: u64,
 }
 
 impl Stopwatch {
