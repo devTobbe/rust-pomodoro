@@ -1,9 +1,11 @@
+// Saves the current state of a session
 #[derive(Debug, Eq, PartialEq)]
 pub enum SessionState {
     Focus,
     Break, 
 }
 
+// Keeps track of session information
 #[derive(Debug)]
 pub struct Session {
     pub rounds: u64,
@@ -11,6 +13,7 @@ pub struct Session {
 }
 
 impl Session {
+    // Creates and retruns a new session object
     pub fn new(rounds : u64) -> Self {
         Self {
             rounds,
@@ -18,6 +21,7 @@ impl Session {
         }
     }
 
+    // Advances the status of the session
     pub fn advance(&mut self) -> bool {
         self.rounds -= 1;
 
@@ -29,6 +33,7 @@ impl Session {
         return true
     }
     
+    // TODO: Refactor to toggle // Toggles the state of the session
     pub fn flip_state(&mut self){
         if self.state == SessionState::Focus {
                 self.state = SessionState::Break;
