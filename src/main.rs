@@ -3,9 +3,17 @@ mod config;
 mod timer;
 
 use clap::Parser;
-use cli::{Cli};
+use cli::{Cli, Command};
+use config::{Config}
 
 fn main() {
     println!("Hello, world!");
-    let _ = Cli::parse();
+    let cli = Cli::parse();
+
+    match cli.command {
+        Command::Start {focus, break_, rounds} => {}
+        Command::Focus {time} => {}
+        Command::Break {time} => {}
+        Command::Rounds {amount} => {}
+    }
 }
