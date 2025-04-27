@@ -6,15 +6,15 @@ use serde_json::from_str;
 // Configuration struct to enable customization
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Config {
-    focus: u32,
-    break_: u32,
-    rounds: u32,
+    focus: u64,
+    break_: u64,
+    rounds: u64,
 }
 
 // Implemented functinos for the config struct
 impl Config {
     // Create a new config object
-    pub fn new(focus: u32, break_: u32, rounds: u32) -> Self {
+    pub fn new(focus: u64, break_: u64, rounds: u64) -> Self {
         Self {
             focus,
             break_,
