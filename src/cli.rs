@@ -26,15 +26,20 @@ pub enum Command {
         rounds: Option<u64>,
     },
     /// Focus time in minutes
-    #[arg(command, default_value_t = 25)]
-    Focus { time : u64} ,
+    Focus {
+        #[arg(default_value_t = 25)]
+        time: u64,
+    },
 
     /// Break time in minutes
-    #[arg(command, default_value_t = 5)]
-    Break {time : u64},
+    Break {
+        #[arg(default_value_t = 5)]
+        time: u64,
+    },
 
     /// Number of rounds for the pomodoro session
-    #[arg(command, default_value_t = 3)]
-    Rounds {amount : u64},
-
+    Rounds {
+        #[arg(default_value_t = 3)]
+        amount: u64,
+    },
 }
