@@ -4,7 +4,7 @@ mod timer;
 
 use clap::Parser;
 use cli::{Cli, Command};
-use config::{Config}
+use config::{Config};
 
 fn main() {
     println!("Hello, world!");
