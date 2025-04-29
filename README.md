@@ -4,13 +4,13 @@ A simple and customizable Pomodoro timer written in Rust.
 
 ## Features
 
-    📦 Lightweight CLI interface
+- 📦 Lightweight CLI interface
 
-    ⏱ Customizable focus and break durations
+- ⏱ Customizable focus and break durations
 
-    🔁 Adjustable number of Pomodoro rounds
+- 🔁 Adjustable number of Pomodoro rounds
 
-    🧠 Great for boosting productivity using the Pomodoro Technique!
+- 🧠 Great for boosting productivity using the Pomodoro Technique!
 
 ## Install
 
@@ -59,12 +59,12 @@ You can use start with optional overrides:
 
 ## TODO
 
-    💾 Save configuration to a file
+- 💾 Save configuration to a file
 
-    🔔 Add notification support
+- v🔔 Add notification support
 
-    🎵 Optional sounds for focus/break transitions
+- 🎵 Optional sounds for focus/break transitions
 
-    🪟 Optional GUI frontend
+- 🪟 Optional GUI frontend
 
 ## License
