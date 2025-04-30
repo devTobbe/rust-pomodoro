@@ -61,7 +61,7 @@ You can use start with optional overrides:
 
 - 💾 Save configuration to a file
 
-- v🔔 Add notification support
+- 🔔 Add notification support
 
 - 🎵 Optional sounds for focus/break transitions
 
