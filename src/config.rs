@@ -6,9 +6,9 @@ use serde_json::from_str;
 // Configuration struct to enable customization
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Config {
-    focus: u64,
-    break_: u64,
-    rounds: u64,
+    pub focus: u64,
+    pub break_: u64,
+    pub rounds: u64,
 }
 
 // Implemented functinos for the config struct
