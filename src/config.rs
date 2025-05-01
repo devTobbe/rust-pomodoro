@@ -32,7 +32,6 @@ const DEFAULT_CONFIG: Config = Config {
 
 // Read configuration file, if nonexistent, return defaults instead.
 pub fn readfile() -> Config {
-    
     // Check if there is a configuration file, if not, return default config
     if !Path::new("conf.json").exists() {
         return DEFAULT_CONFIG;
@@ -46,8 +45,7 @@ pub fn readfile() -> Config {
 }
 
 // TODO: Improve error handling
-pub fn writefile(conf : &Config) {
-
+pub fn writefile(conf: &Config) {
     // Check if there is a configuration file, if not, create one
     if !Path::new("conf.json").exists() {
         let _ = File::create("conf.json");
@@ -55,4 +53,29 @@ pub fn writefile(conf : &Config) {
 
     let json = serde_json::to_string_pretty(&conf).unwrap();
     let _ = std::fs::write("conf.json", json);
+}
+
+// Updates the specified attribute in the configuration file
+pub fn update_saved_attribute(attr: String, val: u64) {
+    // Read the exisitng file
+    let mut conf = readfile();
+    // Check which attribute was selected
+    match attr.as_str() {
+        "focus" => {
+            conf.focus = val;
+        }
+        "break" => {
+            conf.break_ = val;
+        }
+        "rounds" => {
+            conf.rounds = val;
+        }
+        _ => {
+            print!("Error, add error later");
+            return;
+        }
+    }
+
+    // Write to file
+    writefile(&conf);
 }
