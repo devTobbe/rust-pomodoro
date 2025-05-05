@@ -29,8 +29,11 @@ impl Session {
 
     pub fn check_done(&self) -> bool {
         if self.rounds <= 0 {
+            println!("You are done! Good job!");
             return false;
         }
+        self.flip_state();
+        println!("Time for {}", self.get_state_as_string());
         return true;
     }
 
@@ -42,6 +45,14 @@ impl Session {
         } else {
             self.state = SessionState::Focus;
             return;
+        }
+    }
+    fn get_state_as_string(&self) -> String {
+        match self.state {
+            SessionState::Focus => return String::from("Focus"),
+            SessionState::Break => return String::from("Break"),
+            // Throw error here later
+            //_ => return String::from("NOTHING"),
         }
     }
 }
