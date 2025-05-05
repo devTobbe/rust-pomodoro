@@ -21,11 +21,13 @@ impl Session {
         }
     }
 
-    // Advances the status of the session, returns whether or not it is
-    // possible to advance.
-    pub fn advance(&mut self) -> bool {
+    // Advances the status of the session
+    pub fn advance(&mut self) {
         self.rounds -= 1;
+        self.flip_state();
+    }
 
+    pub fn check_done(&self) -> bool {
         if self.rounds <= 0 {
             println!("You are done! Good job!");
             return false;
@@ -45,7 +47,6 @@ impl Session {
             return;
         }
     }
-
     fn get_state_as_string(&self) -> String {
         match self.state {
             SessionState::Focus => return String::from("Focus"),
