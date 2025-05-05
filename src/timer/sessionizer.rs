@@ -2,19 +2,19 @@
 #[derive(Debug, Eq, PartialEq)]
 pub enum SessionState {
     Focus,
-    Break, 
+    Break,
 }
 
 // Keeps track of session information
 #[derive(Debug)]
 pub struct Session {
     pub rounds: u64,
-    pub state : SessionState,
+    pub state: SessionState,
 }
 
 impl Session {
     // Creates and retruns a new session object
-    pub fn new(rounds : u64) -> Self {
+    pub fn new(rounds: u64) -> Self {
         Self {
             rounds,
             state: SessionState::Focus,
@@ -22,27 +22,26 @@ impl Session {
     }
 
     // Advances the status of the session
-    pub fn advance(&mut self) -> bool {
+    pub fn advance(&mut self) {
         self.rounds -= 1;
-
-        if self.rounds <= 0 {
-            return false
-        }
         self.flip_state();
-        
-        return true
-    }
-    
-    // TODO: Refactor to toggle // Toggles the state of the session
-    pub fn flip_state(&mut self){
-        if self.state == SessionState::Focus {
-                self.state = SessionState::Break;
-                return
-        }
-        else {
-            self.state = SessionState::Focus;
-            return
-        }
     }
 
+    pub fn check_done(&self) -> bool {
+        if self.rounds <= 0 {
+            return false;
+        }
+        return true;
+    }
+
+    // TODO: Refactor to toggle // Toggles the state of the session
+    pub fn flip_state(&mut self) {
+        if self.state == SessionState::Focus {
+            self.state = SessionState::Break;
+            return;
+        } else {
+            self.state = SessionState::Focus;
+            return;
+        }
+    }
 }
