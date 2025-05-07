@@ -1,4 +1,5 @@
 use std::{
+    io::{self, Write},
     thread,
     time::{Duration, SystemTime},
 };
@@ -17,22 +18,28 @@ impl Stopwatch {
 
     // Start the timer
     pub fn start(&self) {
-
         let time_in_secs = self.time * 60;
         let duration = Duration::from_secs(time_in_secs);
-
         let start = SystemTime::now();
-        loop {
-            thread::sleep(duration);
 
-            // When time has elapsed, return
-            match start.elapsed() {
-                Ok(elapsed) if elapsed > duration => {
-                    return;
-                }
-                _ => (),
+        loop {
+            let elapsed = start.elapsed().unwrap_or_default();
+
+            if elapsed >= duration {
+                
+                break;
             }
+
+            let remaining = duration - elapsed;
+            let mins = remaining.as_secs() / 60;
+            let secs = remaining.as_secs() % 60;
+
+            // Print remaining time, overwrite previous line
+            print!("\rTime left: {:02}:{:02}", mins, secs);
+            io::stdout().flush().unwrap();
+
+            thread::sleep(Duration::from_secs(1));
         }
+        println!("\n")
     }
 }
-
