@@ -8,7 +8,6 @@ use config::Config;
 use timer::Stopwatch;
 
 fn main() {
-    println!("Hello, world!");
     let cli = Cli::parse();
 
     match cli.command {
