@@ -48,8 +48,6 @@ impl Session {
         match self.state {
             SessionState::Focus => return String::from("Focus"),
             SessionState::Break => return String::from("Break"),
-            // Throw error here later
-            //_ => return String::from("NOTHING"),
         }
     }
 }
