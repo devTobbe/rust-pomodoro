@@ -27,14 +27,11 @@ impl Session {
         self.flip_state();
     }
 
-    pub fn check_done(&self) -> bool {
+    pub fn check_done(&mut self) -> bool {
         if self.rounds <= 0 {
-            println!("You are done! Good job!");
-            return false;
+            return true;
         }
-        self.flip_state();
-        println!("Time for {}", self.get_state_as_string());
-        return true;
+        return false;
     }
 
     // TODO: Refactor to toggle // Toggles the state of the session
@@ -47,10 +44,10 @@ impl Session {
             return;
         }
     }
-    fn get_state_as_string(&self) -> String {
+    pub fn get_state_as_string(&self) -> String {
         match self.state {
-            SessionState::Focus => return String::from("Focus"),
-            SessionState::Break => return String::from("Break"),
+            SessionState::Focus => {return String::from("Focus")},
+            SessionState::Break => {return String::from("Break")},
             // Throw error here later
             //_ => return String::from("NOTHING"),
         }
