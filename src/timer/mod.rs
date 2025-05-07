@@ -9,20 +9,25 @@ pub fn run(focus: u64, break_: u64, rounds: u64) {
     let mut session = Session::new(rounds);
 
     loop {
-        println!("{}", session.rounds.to_string());
+        println!(
+            "🦀🍅: Time for {} in round {}!",
+            session.get_state_as_string(),
+            session.rounds.to_string()
+        );
         match session.state {
             SessionState::Focus => {
                 let sw = Stopwatch::new(focus);
                 sw.start();
-                session.advance();
+                session.flip_state();
             }
             SessionState::Break => {
-                if !session.check_done() {
+                if session.check_done() {
+                    println!("🦀🍅: You are done! Good job!");
                     break;
                 }
                 let sw = Stopwatch::new(break_);
                 sw.start();
-                session.flip_state();
+                session.advance();
             }
         }
     }
