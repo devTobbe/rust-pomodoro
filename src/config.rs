@@ -55,13 +55,16 @@ pub fn readfile() -> Config {
 
 // TODO: Improve error handling
 pub fn writefile(conf: &Config) {
-    // Check if there is a configuration file, if not, create one
-    if !Path::new("conf.json").exists() {
-        let _ = File::create("conf.json");
+    match serde_json::to_string_pretty(&conf) {
+        Ok(json) => {
+            if let Err(e) = std::fs::write("conf.json", json) {
+                eprintln!("Failed to write conf.json: {}", e);
+            }
+        }
+        Err(e) => {
+            eprintln!("Failed to serialize config: {}", e);
+        }
     }
-
-    let json = serde_json::to_string_pretty(&conf).unwrap();
-    let _ = std::fs::write("conf.json", json);
 }
 
 // Updates the specified attribute in the configuration file
