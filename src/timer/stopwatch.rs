@@ -26,7 +26,6 @@ impl Stopwatch {
             let elapsed = start.elapsed().unwrap_or_default();
 
             if elapsed >= duration {
-                
                 break;
             }
 

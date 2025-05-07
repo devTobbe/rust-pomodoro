@@ -46,8 +46,8 @@ impl Session {
     }
     pub fn get_state_as_string(&self) -> String {
         match self.state {
-            SessionState::Focus => {return String::from("Focus")},
-            SessionState::Break => {return String::from("Break")},
+            SessionState::Focus => return String::from("Focus"),
+            SessionState::Break => return String::from("Break"),
             // Throw error here later
             //_ => return String::from("NOTHING"),
         }

@@ -35,8 +35,14 @@ fn main() {
             // Run a timer with the settings
             timer::run(conf.focus, conf.break_, conf.rounds);
         }
-        Command::Focus { time } => {config::update_saved_attribute(String::from("focus"), time);}
-        Command::Break { time } => {config::update_saved_attribute(String::from("break"), time);}
-        Command::Rounds { amount } => {config::update_saved_attribute(String::from("rounds"), amount);}
+        Command::Focus { time } => {
+            config::update_saved_attribute(String::from("focus"), time);
+        }
+        Command::Break { time } => {
+            config::update_saved_attribute(String::from("break"), time);
+        }
+        Command::Rounds { amount } => {
+            config::update_saved_attribute(String::from("rounds"), amount);
+        }
     }
 }
