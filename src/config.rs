@@ -38,10 +38,19 @@ pub fn readfile() -> Config {
     }
 
     // Read configuation file
-    let file = std::fs::read_to_string("conf.json").unwrap();
-    let file_conf: Config = from_str(&file).unwrap();
-
-    return file_conf;
+    match std::fs::read_to_string("conf.json") {
+        Ok(contents) => match from_str(&contents) {
+            Ok(config) => config,
+            Err(_) => {
+                eprintln!("Warning: Failed to parse conf.json, using default config.");
+                return DEFAULT_CONFIG;
+            }
+        },
+        Err(_) => {
+            eprintln!("Warning: Failed to read conf.json, using default config.");
+            return DEFAULT_CONFIG;
+        }
+    }
 }
 
 // TODO: Improve error handling
