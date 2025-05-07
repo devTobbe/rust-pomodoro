@@ -38,21 +38,33 @@ pub fn readfile() -> Config {
     }
 
     // Read configuation file
-    let file = std::fs::read_to_string("conf.json").unwrap();
-    let file_conf: Config = from_str(&file).unwrap();
-
-    return file_conf;
+    match std::fs::read_to_string("conf.json") {
+        Ok(contents) => match from_str(&contents) {
+            Ok(config) => config,
+            Err(_) => {
+                eprintln!("Warning: Failed to parse conf.json, using default config.");
+                return DEFAULT_CONFIG;
+            }
+        },
+        Err(_) => {
+            eprintln!("Warning: Failed to read conf.json, using default config.");
+            return DEFAULT_CONFIG;
+        }
+    }
 }
 
 // TODO: Improve error handling
 pub fn writefile(conf: &Config) {
-    // Check if there is a configuration file, if not, create one
-    if !Path::new("conf.json").exists() {
-        let _ = File::create("conf.json");
+    match serde_json::to_string_pretty(&conf) {
+        Ok(json) => {
+            if let Err(e) = std::fs::write("conf.json", json) {
+                eprintln!("Failed to write conf.json: {}", e);
+            }
+        }
+        Err(e) => {
+            eprintln!("Failed to serialize config: {}", e);
+        }
     }
-
-    let json = serde_json::to_string_pretty(&conf).unwrap();
-    let _ = std::fs::write("conf.json", json);
 }
 
 // Updates the specified attribute in the configuration file
