@@ -53,7 +53,7 @@ pub fn readfile() -> Config {
     }
 }
 
-// TODO: Improve error handling
+// Write config to file
 pub fn writefile(conf: &Config) {
     match serde_json::to_string_pretty(&conf) {
         Ok(json) => {
