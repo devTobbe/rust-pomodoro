@@ -4,8 +4,6 @@ mod timer;
 
 use clap::Parser;
 use cli::{Cli, Command};
-use config::Config;
-use timer::Stopwatch;
 
 fn main() {
     let cli = Cli::parse();
