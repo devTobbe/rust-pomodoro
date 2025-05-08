@@ -88,6 +88,8 @@ pub fn update_saved_attribute(attr: String, val: u64) {
         }
     }
 
+    println!("🦀🍅 Configuration: {} has been updated to {}!", attr, val);
+
     // Write to file
     writefile(&conf);
 }
