@@ -1,4 +1,4 @@
-use std::{fs::File, path::Path};
+use std::path::Path;
 
 use serde::{Deserialize, Serialize};
 use serde_json::from_str;
@@ -83,7 +83,7 @@ pub fn update_saved_attribute(attr: String, val: u64) {
             conf.rounds = val;
         }
         _ => {
-            print!("Error, add error later");
+            eprintln!("Error, add error later");
             return;
         }
     }
