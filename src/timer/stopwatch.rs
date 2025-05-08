@@ -35,7 +35,10 @@ impl Stopwatch {
 
             // Print remaining time, overwrite previous line
             print!("\rTime left: {:02}:{:02}", mins, secs);
-            io::stdout().flush().unwrap();
+            match io::stdout().flush() {
+                Ok(_) => {},
+                Err(_) => {eprintln!("Couldn't flush output stream.")},
+            }
 
             thread::sleep(Duration::from_secs(1));
         }
