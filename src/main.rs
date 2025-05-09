@@ -42,5 +42,8 @@ fn main() {
         Command::Rounds { amount } => {
             config::update_saved_attribute(String::from("rounds"), amount);
         }
+        Command::Reset {} => {
+            config::reset_saved_attribute();
+        }
     }
 }

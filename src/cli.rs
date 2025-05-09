@@ -42,4 +42,7 @@ pub enum Command {
         #[arg(default_value_t = 3)]
         amount: u64,
     },
+    /// Number of rounds for the pomodoro session
+    Reset {
+    },
 }

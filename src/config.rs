@@ -93,3 +93,9 @@ pub fn update_saved_attribute(attr: String, val: u64) {
     // Write to file
     writefile(&conf);
 }
+
+// Updates the specified attribute in the configuration file
+pub fn reset_saved_attribute() {
+    // Write to file
+    writefile(&DEFAULT_CONFIG);
+}
