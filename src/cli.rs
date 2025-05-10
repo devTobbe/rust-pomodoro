@@ -1,6 +1,5 @@
 use clap::{Parser, Subcommand};
 
-// TODO: Add functionality to save configuration.
 #[derive(Parser, Debug)]
 #[command(name = "Rust Pomodoro 🦀🍅")]
 #[command(about = "A CLI Pomodoro timer written in Rust", long_about = None)]

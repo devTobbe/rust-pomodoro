@@ -34,7 +34,6 @@ impl Session {
         return false;
     }
 
-    // TODO: Refactor to toggle // Toggles the state of the session
     pub fn flip_state(&mut self) {
         if self.state == SessionState::Focus {
             self.state = SessionState::Break;
