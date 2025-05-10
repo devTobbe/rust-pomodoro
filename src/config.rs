@@ -11,18 +11,6 @@ pub struct Config {
     pub rounds: u64,
 }
 
-// Implemented functinos for the config struct
-impl Config {
-    // Create a new config object
-    pub fn new(focus: u64, break_: u64, rounds: u64) -> Self {
-        Self {
-            focus,
-            break_,
-            rounds,
-        }
-    }
-}
-
 // Default configuration that is used if nothing else is specified.
 const DEFAULT_CONFIG: Config = Config {
     focus: 25,
