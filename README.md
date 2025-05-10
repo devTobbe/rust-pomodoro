@@ -1,70 +1,106 @@
 # Rust Pomodoro 🦀🍅
 
-A simple and customizable Pomodoro timer written in Rust.
+A simple and configurable Pomodoro timer built in Rust. Use it to stay focused, 
+manage breaks, and track your work sessions—all from the command line.
 
 ## Features
 
-- 📦 Lightweight CLI interface
+* Start a Pomodoro session with custom focus/break times and rounds
+* Persist your preferred settings between runs
+* Update settings independently (focus time, break time, rounds)
+* Reset all settings to default
 
-- ⏱ Customizable focus and break durations
+## Installation
 
-- 🔁 Adjustable number of Pomodoro rounds
+Clone the repository and build the project using Cargo:
 
-- 🧠 Great for boosting productivity using the Pomodoro Technique!
+```bash
+git clone https://github.com/yourusername/pomodoro-cli.git
+cd pomodoro-cli
+cargo build --release
+```
 
-## Install
+Then you can run the binary:
 
-TODO: Instructions for installing the CLI tool.
+```bash
+./target/release/pomodoro
+```
 
 ## Usage
 
-Once the binary is built and available on your system, you can use the following CLI commands:
+```bash
+pomodoro <COMMAND>
+```
 
-### Start a Pomodoro session
+### Commands
 
-rust-pomodoro start
+#### `start`
 
-This will start a session with the default values:
-• Focus: 25 minutes
-• Break: 5 minutes
-• Rounds: 3
+Start a Pomodoro session. You can optionally override settings with flags.
 
-### Override defaults for a single session
+```bash
+pomodoro start [--focus <minutes>] [--break <minutes>] [--rounds <count>]
+```
 
-rust-pomodoro start --focus 30 --break 10 --rounds 4
+* `--focus`: Duration of the focus session in minutes
+* `--break`: Duration of the break session in minutes
+* `--rounds`: Number of focus/break rounds
 
-This command runs a Pomodoro session with:
-• 30-minute focus intervals
-• 10-minute breaks
-• 4 total rounds
+#### `focus`
 
-### Set global defaults and run
+Update the default focus session time.
 
-rust-pomodoro --focus 40 --break 10 --rounds 5 start
+```bash
+pomodoro focus <minutes>
+```
 
-This sets new default values (only for this run of the program) and starts the timer.
+#### `break`
 
-## Options
+Update the default break session time.
 
-Global flags (apply as defaults to any command):
-• --focus <minutes> — Set default focus time (default: 25)
-• --break <minutes> — Set default break time (default: 5)
-• --rounds <number> — Set default number of Pomodoro rounds (default: 3)
+```bash
+pomodoro break <minutes>
+```
 
-Subcommand: start
-You can use start with optional overrides:
-• --focus <minutes> — Override focus time for this session
-• --break <minutes> — Override break time for this session
-• --rounds <number> — Override round count for this session
+#### `rounds`
 
-## TODO
+Update the default number of rounds.
 
-- 💾 Save configuration to a file
+```bash
+pomodoro rounds <count>
+```
 
-- 🔔 Add notification support
+#### `reset`
 
-- 🎵 Optional sounds for focus/break transitions
+Reset all saved settings to defaults.
 
-- 🪟 Optional GUI frontend
+```bash
+pomodoro reset
+```
+
+## Configuration
+
+User preferences are saved between runs. The configuration is read from and written to a file automatically (typically in a JSON or similar format—see the `config` module).
+
+If you provide any values via command-line flags during a `start`, they will override the saved config temporarily for that session.
+
+## Example
+
+```bash
+# Start a 25/5 pomodoro session with 4 rounds
+pomodoro start --focus 25 --break 5 --rounds 4
+
+# Set focus time to 30 minutes
+pomodoro focus 30
+
+# Reset all saved preferences
+pomodoro reset
+```
 
 ## License
+
+MIT
+
+---
+
+Built with ❤️ in Rust.
