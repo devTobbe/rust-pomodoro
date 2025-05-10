@@ -27,6 +27,7 @@ impl Session {
         self.flip_state();
     }
 
+    // Checks whether or not there are any rounds left
     pub fn check_done(&mut self) -> bool {
         if self.rounds <= 0 {
             return true;
@@ -34,6 +35,7 @@ impl Session {
         return false;
     }
 
+    // Flips the state of the session
     pub fn flip_state(&mut self) {
         if self.state == SessionState::Focus {
             self.state = SessionState::Break;
@@ -43,6 +45,8 @@ impl Session {
             return;
         }
     }
+
+    // Returns the current state as a string
     pub fn get_state_as_string(&self) -> String {
         match self.state {
             SessionState::Focus => return String::from("Focus"),
