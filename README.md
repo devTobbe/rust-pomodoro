@@ -80,7 +80,7 @@ pomodoro reset
 
 ## Configuration
 
-User preferences are saved between runs. The configuration is read from and written to a file automatically (typically in a JSON or similar format—see the `config` module).
+User preferences can be saved between runs. The configuration is read from and written to a file automatically.
 
 If you provide any values via command-line flags during a `start`, they will override the saved config temporarily for that session.
 
